@@ -1,10 +1,12 @@
+import math
 
 class Value:
     """ stores a single scalar value and its gradient """
 
-    def __init__(self, data, _children=(), _op=''):
+    def __init__(self, data, _children=(), _op='', label = ''):
         self.data = data
         self.grad = 0
+        self.label = label
         # internal variables used for autograd graph construction
         self._backward = lambda: None
         self._prev = set(_children)
@@ -49,6 +51,27 @@ class Value:
             self.grad += (out.data > 0) * out.grad
         out._backward = _backward
 
+        return out
+    
+    def sigmoid(self):
+        out = Value(1 / (1 + math.exp(-self.data)), (self, ), 'sigmoid')
+        
+        def _backward():
+            self.grad += (out.data * (1 - out.data)) * out.grad
+            
+        out._backward = _backward
+        
+        return out
+    
+    def ln(self):
+        if self.data == 0.0:
+            self.data = 1e-5
+        out = Value(math.log(self.data), (self, ), 'ln')
+        
+        def _backward():
+            self.grad += (1/ self.data) * out.grad
+        out._backward = _backward
+        
         return out
 
     def backward(self):
