@@ -13,7 +13,7 @@
 
 Can we elevate this simple idea to:
 1. Regression?
-2. Classification?
+2. Classification? - Binary ✅
 3. Image classification?
 4. Object Detection?
 5. Semantic Segmentation?
