@@ -9,7 +9,11 @@
 3. Multi Layer Perceptron
 4. Loss function
 5. Optimization on parameters 
-6. Zero-gra
+6. Zero-grad
+
+**Supplementary**
+1. Learning rate
+2. Regularizer
 
 Can we elevate this simple idea to:
 1. Regression?
