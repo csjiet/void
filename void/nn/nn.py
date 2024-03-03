@@ -1,5 +1,5 @@
 import random
-from pocketgrad.engine import Value
+from void.nn.engine import Value
 
 class Module:
 
